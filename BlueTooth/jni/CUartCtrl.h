@@ -11,7 +11,6 @@
 
 typedef void(*UART_READ_FUN)(const BYTE* buf, int len);
 
-
 class CUartCtrl
 {
 public:
@@ -21,8 +20,8 @@ public:
 	bool IsOpen();
 	void CloseUart();
 	bool Send(BYTE* buf, int len = -1);
-	void ProcRXData(const BYTE* buf, int len);	//接收数据
-	void RegRxFun(UART_READ_FUN fun);		//注册接收处理函数
+	void ProcRXData(const BYTE* buf, int len);	//鎺ユ敹鏁版嵁
+	void RegRxFun(UART_READ_FUN fun);		//娉ㄥ唽鎺ユ敹澶勭悊鍑芥暟
 	void ThreadRead();
 private:
 	bool m_bOpen;

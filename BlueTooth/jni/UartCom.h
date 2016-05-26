@@ -9,7 +9,8 @@
 #define UARTCOM_H_
 #include "comdef.h"
 
-#define CLIENT_BUFF_SIZE	(1024)		//串口接收数据长度
+#define CLIENT_BUFF_SIZE	(1024)		//涓插彛鎺ユ敹鏁版嵁闀垮害
+
 
 class UartCom
 {
@@ -18,7 +19,7 @@ public:
 	~UartCom();
 	void ProcRxCmd(const BYTE* buf, int len);
 private:
-	void PrintBufferHex(const BYTE* buf, int len);	//打印接收到的信息
+	void PrintBufferHex(const BYTE* buf, int len);	//鎵撳嵃鎺ユ敹鍒扮殑淇℃伅
 };
 
 

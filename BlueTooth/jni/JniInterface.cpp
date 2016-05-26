@@ -6,7 +6,7 @@
 #include "CBlueTooth.h"
 
 /*
- * Jni∑Ω∑®≤…”√∂ØÃ¨º”‘ÿ∑Ω∑®
+ * JniÊñπÊ≥ïÈááÁî®Âä®ÊÄÅÂä†ËΩΩÊñπÊ≥ï
  *
  */
 static JNIEnv * gEnv = NULL;
@@ -22,8 +22,7 @@ bool JNI_CallJavaIntStringStringMethod
 	jmethodID construct_method;
 	jmethodID instanse_method;
 
-
-	//≤È’“Class∂‘œÛ
+	//Êü•ÊâæClassÂØπË±°
 	clazz = env->FindClass("com.zhonghong.jni.JniClient");
 	if (clazz == NULL)
 	{
@@ -31,7 +30,7 @@ bool JNI_CallJavaIntStringStringMethod
 		return false;
 	}
 
-	//≤È’“ƒ¨»œππ‘Ï∫Ø ˝
+	//Êü•ÊâæÈªòËÆ§ÊûÑÈÄ†ÂáΩÊï∞
 	construct_method = gEnv->GetMethodID(clazz, "<init>", "()V");
 	if (construct_method == NULL)
 	{
@@ -46,7 +45,7 @@ bool JNI_CallJavaIntStringStringMethod
 		return false;
 	}
 
-	//¥¥Ω®¿‡µƒ µ¿˝
+	//ÂàõÂª∫Á±ªÁöÑÂÆû‰æã
 	jobj = gEnv->NewObject(clazz, construct_method);
 	if (jobj == NULL)
 	{
@@ -54,7 +53,7 @@ bool JNI_CallJavaIntStringStringMethod
 		return false;
 	}
 
-	//µ˜”√ µ¿˝∑Ω∑®
+	//Ë∞ÉÁî®ÂÆû‰æãÊñπÊ≥ï
 	jstring str = gEnv->NewStringUTF(arg2);
 	jstring strRet = (jstring)gEnv->CallObjectMethod(jobj, instanse_method, arg1, str);
 
@@ -62,7 +61,7 @@ bool JNI_CallJavaIntStringStringMethod
 	strncpy(result, newStr, resultLen-1);
 	gEnv->ReleaseStringUTFChars(strRet, newStr);
 	gEnv->DeleteLocalRef(strRet);
-	//ªÿ ’±æµÿ◊ ‘¥
+	//ÂõûÊî∂Êú¨Âú∞ËµÑÊ∫ê
 	gEnv->DeleteLocalRef(clazz);
 	gEnv->DeleteLocalRef(jobj);
 	gEnv->DeleteLocalRef(str);
@@ -76,7 +75,7 @@ bool JNI_CallJavaStaticIntStringStringMethod
 //	jclass clazz = NULL;
 		jmethodID static_method;
 
-//		//≤È’“Class∂‘œÛ
+//		//Êü•ÊâæClassÂØπË±°
 //		clazz = env->FindClass("com.zhonghong.jni.JniClient");
 //		if (clazz == NULL)
 //		{
@@ -84,7 +83,7 @@ bool JNI_CallJavaStaticIntStringStringMethod
 //			return false;
 //		}
 
-		//≤È’“static ∑Ω∑®
+		//Êü•Êâæstatic ÊñπÊ≥ï
 //		static_method = env->GetStaticMethodID(clazz, function, "(ILjava/lang/String;)Ljava/lang/String;");
 		static_method = env->GetStaticMethodID(g_cls_BlueToothActivity, function, "(ILjava/lang/String;)Ljava/lang/String;");
 		if (static_method == NULL)
@@ -94,14 +93,14 @@ bool JNI_CallJavaStaticIntStringStringMethod
 		}
 
 		jstring str = env->NewStringUTF(arg2);
-		//µ˜”√Java∑Ω∑®
+		//Ë∞ÉÁî®JavaÊñπÊ≥ï
 		jstring strRet = (jstring)env->CallStaticObjectMethod(g_cls_BlueToothActivity, static_method, arg1, str);
 		const char* newStr = env->GetStringUTFChars(strRet, NULL);
 			strncpy(result, newStr, resultLen-1);
 			env->ReleaseStringUTFChars(strRet, newStr);
 			env->DeleteLocalRef(strRet);
 
-		//…æ≥˝±æµÿ◊ ‘¥
+		//Âà†Èô§Êú¨Âú∞ËµÑÊ∫ê
 //		env->DeleteLocalRef(clazz);
 		env->DeleteLocalRef(str);
 		return true;
@@ -159,8 +158,8 @@ jstring GetBlueToothVersion(JNIEnv *env, jclass clz)
 }
 
 /*
- * ∑Ω∑®∂‘”¶±Ì
- * {Java∑Ω∑®£¨∑Ω∑®«©√˚(≤Œ ˝+∑µªÿ÷µ)£¨±æµÿ∂‘”¶∑Ω∑®}
+ * ÊñπÊ≥ïÂØπÂ∫îË°®
+ * {JavaÊñπÊ≥ïÔºåÊñπÊ≥ïÁ≠æÂêç(ÂèÇÊï∞+ËøîÂõûÂÄº)ÔºåÊú¨Âú∞ÂØπÂ∫îÊñπÊ≥ï}
  */
 const JNINativeMethod g_methods[] = {
 		{"HelloBlueTooth", "()V", (void*)HelloBlueTooth},
@@ -168,7 +167,7 @@ const JNINativeMethod g_methods[] = {
 };
 
 
-//º”‘ÿso ±ªÿµ˜
+//Âä†ËΩΩsoÊó∂ÂõûË∞É
 JNIEXPORT jint /*JNICALL*/ JNI_OnLoad(JavaVM* vm, void* reserved)
 {
 	TestAp_Printf(UART_DEBUG, "OnLoad Start\r\n");
@@ -188,20 +187,20 @@ JNIEXPORT jint /*JNICALL*/ JNI_OnLoad(JavaVM* vm, void* reserved)
 		return JNI_ERR;
 	}
 
-	//…˙≥…»´æ÷»ı“˝”√
+	//ÁîüÊàêÂÖ®Â±ÄÂº±ÂºïÁî®
 	g_cls_BlueToothActivity = (jclass)env->NewWeakGlobalRef(cls);
 
 	env->DeleteLocalRef(cls);
 
 
-	//◊¢≤·JNI∑Ω∑®
+	//Ê≥®ÂÜåJNIÊñπÊ≥ï
 	env->RegisterNatives(g_cls_BlueToothActivity, g_methods, sizeof(g_methods)/sizeof(g_methods[0]));
 	pBlueTooth = new CBlueTooth();
 	TestAp_Printf(UART_DEBUG, "OnLoad Success\r\n");
 	return JNI_VERSION_1_6;
 }
 
-//–∂‘ÿso ±ªÿµ˜
+//Âç∏ËΩΩsoÊó∂ÂõûË∞É
 JNIEXPORT void /*JNICALL*/ JNI_ONUnLoad(JavaVM* vm, void* reserved)
  {
 	JNIEnv * env = NULL;

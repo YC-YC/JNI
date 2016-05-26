@@ -51,7 +51,7 @@ const char* CBlueTooth::GetBlueToothVersion()
 	return "1.0";
 }
 
-void CBlueTooth::OpenUart()	//´ò¿ª´®¿Ú
+void CBlueTooth::OpenUart()	//æ‰“å¼€ä¸²å£
 {
 	LOGI("OpenUart\r\n");
 	if (mUart != NULL)

@@ -11,6 +11,7 @@ const char* CJavaForString(int cmd, const char*val);
 
 UartCom::UartCom()
 {
+
 }
 UartCom::~UartCom()
 {
@@ -19,7 +20,7 @@ UartCom::~UartCom()
 void UartCom::ProcRxCmd(const BYTE* buf, int len)
 {
 	static BYTE rxBuf[CLIENT_BUFF_SIZE + 1] = {0};
-	static int rxLen = 0;	//Î´´¦ÀíÊı¾İ³¤¶È
+	static int rxLen = 0;	//æœªå¤„ç†æ•°æ®é•¿åº¦
 	if (rxLen <= 0)
 	{
 		return;
@@ -42,7 +43,7 @@ void UartCom::ProcRxCmd(const BYTE* buf, int len)
 	}
 }
 
-void UartCom::PrintBufferHex(const BYTE* buf, int len)	//´òÓ¡½ÓÊÕµ½µÄĞÅÏ¢
+void UartCom::PrintBufferHex(const BYTE* buf, int len)	//æ‰“å°æ¥æ”¶åˆ°çš„ä¿¡æ¯
 {
 	int newLen = 1024;
 	char* printbuff = new char[newLen];

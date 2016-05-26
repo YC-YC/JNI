@@ -1,9 +1,2 @@
 eclipse.preferences.version=1
-encoding//jni/CBlueTooth.cpp=UTF-8
-encoding//jni/CBlueTooth.h=UTF-8
-encoding//jni/CUartCtrl.cpp=UTF-8
-encoding//jni/CUartCtrl.h=UTF-8
-encoding//jni/JniInterface.cpp=UTF-8
-encoding//jni/UartCom.cpp=UTF-8
-encoding//jni/UartCom.h=UTF-8
 encoding//src/com/zhonghong/jni/JniClient.java=UTF-8

@@ -20,19 +20,18 @@
 class CBlueTooth
 {
 public:
-
 	CBlueTooth();
 	~CBlueTooth();
 	UartCom* GetUartCom();
 	const char* GetBlueToothVersion();
 
 private:
-	void OpenUart();	//打开串口
+	void OpenUart();	//鎵撳紑涓插彛
 	void CloseUart();
 
 private:
-	CUartCtrl* mUart;	//串口通讯
-	UartCom* mUartCom;	//接收处理
+	CUartCtrl* mUart;	//涓插彛閫氳
+	UartCom* mUartCom;	//鎺ユ敹澶勭悊
 
 };
 

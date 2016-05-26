@@ -18,6 +18,7 @@ static void* ThreadRun(void* lParam)
 	return NULL;
 }
 
+
 CUartCtrl::CUartCtrl()
 {
 	m_bOpen = false;
@@ -50,18 +51,18 @@ bool CUartCtrl::OpenUart(const char* pPath, unsigned int baud)
 		else
 		{
 			struct termios oldtio, newtio;
-			tcgetattr(mUartfd, &oldtio);	//»ñÈ¡ÊôĞÔ
+			tcgetattr(mUartfd, &oldtio);	//è·å–å±æ€§
 			bzero(&newtio, sizeof(newtio));
 
-//			newtio.c_cflag = baud | CS8 | CLOCAL | CREAD | CSTOPB; //2¸öÍ£Ö¹Î»CSTOPB
+//			newtio.c_cflag = baud | CS8 | CLOCAL | CREAD | CSTOPB; //2ä¸ªåœæ­¢ä½CSTOPB
 			newtio.c_cflag = baud | CS8 | CLOCAL | CREAD ;
 			newtio.c_iflag = 0;
 			newtio.c_oflag = 0;
 			newtio.c_lflag = 0;
 			newtio.c_cc[VTIME] = 0;
-			newtio.c_cc[VMIN] = 1;//×éºÏÊ¹ÓÃ£¬ÓĞ³¬¹ı1¸öÊı¾İÊ±²Å¶Á
-			tcflush(mUartfd, TCIOFLUSH);	//Çå¿ÕIO×´Ì¬
-			tcsetattr(mUartfd, TCSANOW, &newtio);	//Á¢¼´¸üĞÂ
+			newtio.c_cc[VMIN] = 1;//ç»„åˆä½¿ç”¨ï¼Œæœ‰è¶…è¿‡1ä¸ªæ•°æ®æ—¶æ‰è¯»
+			tcflush(mUartfd, TCIOFLUSH);	//æ¸…ç©ºIOçŠ¶æ€
+			tcsetattr(mUartfd, TCSANOW, &newtio);	//ç«‹å³æ›´æ–°
 			if (m_threadt == 0)
 			{
 				m_bOpen = true;
@@ -130,7 +131,7 @@ void CUartCtrl::ThreadRead()
 	if (mUartfd != 0)
 	{
 //		fcntl(mUartfd, F_SETFL, O_SYNC); //set block,O_NONBLOCK
-		fcntl(mUartfd, F_SETFL, O_NONBLOCK); //·Ç×èÈû
+		fcntl(mUartfd, F_SETFL, O_NONBLOCK); //éé˜»å¡
 	}
 	LOGI("ThreadRead Start!\r\n");
 	m_bThreadRun = true;
@@ -155,7 +156,7 @@ void CUartCtrl::ThreadRead()
 		}
 		usleep(10);
 	}
-	LOGI("ThreadRead End£¡\r\n");
+	LOGI("ThreadRead Endï¼\r\n");
 	m_bReqExitThread = false;
 	m_bThreadRun = false;
 }
