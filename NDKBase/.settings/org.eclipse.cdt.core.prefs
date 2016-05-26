@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/com.android.toolchain.gcc.680523358/C_INCLUDE/delimiter=;
+environment/project/com.android.toolchain.gcc.680523358/C_INCLUDE/operation=replace
+environment/project/com.android.toolchain.gcc.680523358/C_INCLUDE/value=${C_INCLUDE_PATH}
+environment/project/com.android.toolchain.gcc.680523358/append=true
+environment/project/com.android.toolchain.gcc.680523358/appendContributed=true
