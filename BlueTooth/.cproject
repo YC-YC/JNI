@@ -28,7 +28,7 @@
 							</builder>
 							<tool id="com.android.gcc.compiler.1306385076" name="Android GCC Compiler" superClass="com.android.gcc.compiler">
 								<option id="com.android.gcc.option.includePath.1628159865" superClass="com.android.gcc.option.includePath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;F:\zhonghong\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;F:\GitHub\JNI\include&quot;"/>
 								</option>
 								<inputType id="com.android.gcc.inputType.728322162" superClass="com.android.gcc.inputType"/>
 							</tool>
