@@ -54,6 +54,9 @@ public class SerialPortProxy {
 		}
 		mInputStream = new FileInputStream(mFd);
 		mOutputStream = new FileOutputStream(mFd);
+		mReadThread = new ReadThread();
+		mIsReadThreadStop = false;
+		mReadThread.start();
 	}
 	
 	/**关闭串口*/
