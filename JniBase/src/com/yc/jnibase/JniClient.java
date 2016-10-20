@@ -21,5 +21,7 @@ public class JniClient {
 	public static native void JavaCallCForString(int cmd, String val);
 
 	public static native void JavaCallCForInt(int cmd, int val);
-
+	
+	public static native boolean JavaCallCForInt2(byte[] cmd, int val);
+	
 }

@@ -9,6 +9,11 @@
 static CID3* pID3 =NULL;
 static CID3 ID3;
 
+int main(int argc, char* argv[]){
+	LOGI("main");
+
+}
+
 JNIEXPORT jstring JNICALL Java_com_example_ndkbase_NDKClient_HelloJni
   (JNIEnv *env, jclass art, jstring str1, jstring str2)
 {
