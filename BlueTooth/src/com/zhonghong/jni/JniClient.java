@@ -3,15 +3,18 @@ package com.zhonghong.jni;
 import android.util.Log;
 
 /*
- * Jni½»»¥º¯Êı
+ * Jniï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 public class JniClient {
 	
 	
 	private static final String TAG = "JniClient";
 	
-	static public native void HelloBlueTooth();	//²âÊÔº¯Êı
+	static public native void HelloBlueTooth();	//ï¿½ï¿½ï¿½Ôºï¿½ï¿½ï¿½
 	static public native String GetBlueToothVersion();	//
+	
+	/**jniæ›´æ–°javaçš„æ•°æ®*/
+	static public native void updateData(int[] data);
 	
 	public static String CCallJavaForString(int cmd, String val)
 	{

@@ -157,12 +157,24 @@ jstring GetBlueToothVersion(JNIEnv *env, jclass clz)
 	return env->NewStringUTF(pBlueTooth->GetBlueToothVersion());
 }
 
+void updateData(JNIEnv *env, jclass clz, jintArray jData){
+	jint* nSession = (jint *) env->GetPrimitiveArrayCritical(jData, NULL);
+	if (nSession == NULL) {
+		TestAp_Printf(UART_DEBUG, "Error retrieving session id pointer\r\n");
+		return;
+	}
+	nSession[0] = 10;
+	env->ReleasePrimitiveArrayCritical(jData, nSession, 0);
+	nSession = NULL;
+}
+
 /*
  * 方法对应表
  * {Java方法，方法签名(参数+返回值)，本地对应方法}
  */
 const JNINativeMethod g_methods[] = {
 		{"HelloBlueTooth", "()V", (void*)HelloBlueTooth},
+		{"updateData", "([I)V", (void*)updateData},
 		{"GetBlueToothVersion", "()Ljava/lang/String;", (void*)GetBlueToothVersion}
 };
 
