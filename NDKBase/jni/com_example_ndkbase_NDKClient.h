@@ -103,6 +103,14 @@ JNIEXPORT void JNICALL Java_com_example_ndkbase_NDKClient_nativeMethod
 JNIEXPORT void JNICALL Java_com_example_ndkbase_NDKClient_exceptionMethod
   (JNIEnv *, jclass);
 
+/*
+ * Class:     com_example_ndkbase_NDKClient
+ * Method:    updateData
+ * Signature: ([I)V
+ */
+JNIEXPORT void JNICALL Java_com_example_ndkbase_NDKClient_updateData
+  (JNIEnv *, jclass, jintArray);
+
 #ifdef __cplusplus
 }
 #endif

@@ -21,10 +21,14 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		String str = NDKClient.HelloJni("", "");
-		NDKClient.LoadID3();
-		LOG(NDKClient.GetID3Title());
-		NDKClient.ReleaseID3();
-		NDKClient.SetFilePath("/mnt/sdcard/test.mp3");
+//		NDKClient.LoadID3();
+//		LOG(NDKClient.GetID3Title());
+//		NDKClient.ReleaseID3();
+//		NDKClient.SetFilePath("/mnt/sdcard/test.mp3");
+		int[] data = {5};
+		LOG("原来数据为：" + data[0]);
+		NDKClient.updateData(data);
+		LOG("更新数据为：" + data[0]);
 		LOG(str);
 		LOG("currentTimeMillis " + System.currentTimeMillis());
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");

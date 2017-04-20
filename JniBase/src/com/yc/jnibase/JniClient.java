@@ -24,4 +24,5 @@ public class JniClient {
 	
 	public static native boolean JavaCallCForInt2(byte[] cmd, int val);
 	
+	public static native String Test(String path);
 }

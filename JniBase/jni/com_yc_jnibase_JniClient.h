@@ -31,6 +31,14 @@ JNIEXPORT void JNICALL Java_com_yc_jnibase_JniClient_JavaCallCForInt
 JNIEXPORT jboolean JNICALL Java_com_yc_jnibase_JniClient_JavaCallCForInt2
   (JNIEnv *, jclass, jbyteArray, jint);
 
+/*
+ * Class:     com_yc_jnibase_JniClient
+ * Method:    Test
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_com_yc_jnibase_JniClient_Test
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

@@ -343,3 +343,21 @@ JNIEXPORT void JNICALL Java_com_example_ndkbase_NDKClient_exceptionMethod
 		env->CallStaticVoidMethod(clz, static_method);
 	}
 }
+
+/*
+ * Class:     com_example_ndkbase_NDKClient
+ * Method:    updateData
+ * Signature: ([I)V
+ */
+JNIEXPORT void JNICALL Java_com_example_ndkbase_NDKClient_updateData
+  (JNIEnv *env, jclass, jintArray jData){
+
+	jint* nSession = (jint *) env->GetPrimitiveArrayCritical(jData, NULL);
+	if (nSession == NULL) {
+		TestAp_Printf(UART_DEBUG, "Error retrieving session id pointer\r\n");
+		return;
+	}
+	nSession[0] = 10;
+	env->ReleasePrimitiveArrayCritical(jData, nSession, 0);
+	nSession = NULL;
+}

@@ -20,6 +20,9 @@ public class NDKClient {
 	
 	static public native void exceptionMethod();
 	
+	/**jni更新java的数据*/
+	static public native void updateData(int[] data);
+	
 	private static void callException()
 	{
 		int z = 10/0;
