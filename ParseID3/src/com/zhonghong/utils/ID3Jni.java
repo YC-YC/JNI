@@ -22,11 +22,11 @@ public class ID3Jni {
 		return isUseJni;
 	}
 
-	public static boolean isHaveID3Info(String filePath) {
+	public synchronized static boolean isHaveID3Info(String filePath) {
 		return ParseID3(filePath);
 	}
 	
-	public static boolean parseID3Pic(String filePath, String savePicPath) {
+	public synchronized static boolean parseID3Pic(String filePath, String savePicPath) {
 		return ParseID3Pic(filePath, savePicPath);
 	}
 	

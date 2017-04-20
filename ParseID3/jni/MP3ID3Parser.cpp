@@ -200,7 +200,7 @@ bool CMP3ID3Parser::ParseDataBlock(const BYTE *pSrc, int len, char *pDest) {
 	/*
 	 * 0：ISO-8859-1编码
 	 * 1：UTF-16LE编码(Unicode)
-	 * 2：UTF-16BE编码
+	 * 2：UTF-16BE编码（大端）
 	 * 3：UTF-8编码
 	 *
 	 */
@@ -210,14 +210,20 @@ bool CMP3ID3Parser::ParseDataBlock(const BYTE *pSrc, int len, char *pDest) {
 
 	switch (charset) {
 	case 1:			// UTF-16LE
+	{
 		if ((len > 4) && (strncmp((const char *)pSrc, "eng", 4) == 0)) {
 			pSrc += 4;
 			len -= 4;
 		}
-
+		bool bBigEndian = false;
 		if ((len > 2) && (pSrc[0] == 0xFF) && (pSrc[1] == 0xFE)) {
 			pSrc += 2;
 			len -= 2;
+		}
+		else if ((len > 2) && (pSrc[0] == 0xFE) && (pSrc[1] == 0xFF)) {
+			pSrc += 2;
+			len -= 2;
+			bBigEndian = true;
 		}
 
 		if (len%2 != 0) {
@@ -227,7 +233,12 @@ bool CMP3ID3Parser::ParseDataBlock(const BYTE *pSrc, int len, char *pDest) {
 		if (len > 0) {
 			char temp[ID3_ITEM_LEN + 1] = { 0 };
 			memcpy(temp, pSrc, len);
-			result = CharsetConvert("UTF-16LE", "UTF-8", temp, len, pDest, ID3_ITEM_LEN);
+			if (bBigEndian){
+				result = CharsetConvert("UTF−16BE", "UTF-8", temp, len, pDest, ID3_ITEM_LEN);
+			}
+			else{
+				result = CharsetConvert("UTF-16LE", "UTF-8", temp, len, pDest, ID3_ITEM_LEN);
+			}
 
 			if (!result) {	// 大端数据
 				LOGICTRL(UART_DEBUG, "CMP3ID3Parser::ParseDataBlock CharsetConvert Big Eng!");
@@ -243,6 +254,7 @@ bool CMP3ID3Parser::ParseDataBlock(const BYTE *pSrc, int len, char *pDest) {
 				result = CharsetConvert("UTF-16LE", "UTF-8", temp, len, pDest, ID3_ITEM_LEN);
 			}
 		}
+	}
 		break;
 	case 2:			// UTF-16BE
 		break;
