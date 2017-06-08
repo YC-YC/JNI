@@ -28,7 +28,7 @@ bool CMP3ID3Parser::HandleParseID3(FILE *pMP3File, S_ID3_INFO *pID3Info) {
 								+ flagHeader[8]*0x80 + flagHeader[9];
 
 			LOGICTRL(UART_DEBUG, "CMP3ID3Parser::ParseID3 dataLen = %d", dataLen);
-			if (dataLen < 1024*1024) {	// 大于1M，不继续解析
+			if (dataLen < 2*1024*1024) {	// 大于1M，不继续解析
 				BYTE *pID3Data = new BYTE[dataLen];
 				if (fread(pID3Data, dataLen, 1, pMP3File)) {
 					result = ParseID3V2_3(pID3Data, dataLen, pID3Info, NULL);
