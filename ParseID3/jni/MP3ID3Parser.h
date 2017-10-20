@@ -20,10 +20,10 @@ private:
 	bool IsID3V2_3(const BYTE *pFlagHeader) const;
 	bool IsID3V1(const BYTE *pFlagHeader) const;
 	
-	bool ParseID3V2_3(const BYTE *pID3Data, UINT dataLen, S_ID3_INFO *pID3Info, S_PIC_INFO *pPicInfo);
+	bool ParseID3V2_3(const BYTE *pID3Data, int dataLen, S_ID3_INFO *pID3Info, S_PIC_INFO *pPicInfo);
 	bool ParseID3V1(const BYTE *pID3Data, S_ID3_INFO *pID3Info);
 	
-	bool ParseAPICData(const BYTE *pAPICFrameData, UINT apicFrameLen, S_PIC_INFO *pPicInfo);	
+	bool ParseAPICData(const BYTE *pAPICFrameData, int apicFrameLen, S_PIC_INFO *pPicInfo);
 	bool ParseDataBlock(const BYTE *pSrc, int len, char *pDest);
 };
 

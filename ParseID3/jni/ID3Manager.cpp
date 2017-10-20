@@ -24,7 +24,7 @@ CID3Manager::CID3Manager() {
 	m_pM4AID3Parser = new CM4AID3Parser;
 		
 	m_pMP3ID3Parser->SetNextParser(m_pWMAID3Parser);
-	m_pWMAID3Parser->SetNextParser(m_pM4AID3Parser);
+//	m_pWMAID3Parser->SetNextParser(m_pM4AID3Parser);
 }
 
 CID3Manager::~CID3Manager() {

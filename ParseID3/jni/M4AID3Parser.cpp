@@ -70,7 +70,7 @@ bool CM4AID3Parser::HandleParseID3(FILE *pM4AFile, S_ID3_INFO *pID3Info) {
 			/*
 			 * 给出需要解析的ATOM的格式及实际数据例子如下:
 			 * |    XXXX     |     AAAA     |    xxxx     |     data    |    ver    |   flag   |  reserved   | realdata    |
-			 *    总长度4字节          标识符4字节             长度4字节          固定符号4字节            1字节                  3字节               保留4字节           剩余实际数据
+			 *    总长度4字节         	 标识符4字节           		  长度4字节         		 固定符号4字节            1字节                  3字节               		保留4字节           剩余实际数据
 			 * | 00 00 00 1C | A9 61 6C 62  | 00 00 00 14 | 64 61 74 61 |     00    | 00 00 01 | 00 00 00 00 | 43 43 43 43 |
 			 *     总长28                  标识符A9 alb      长度20                  字符data                                         实际数据CCCC
 			 * 其中流派的实际数据为2个字节，给出的是索引值，需要拿这个索引值在流派类型数组中取出流派字符串
@@ -103,8 +103,8 @@ bool CM4AID3Parser::HandleParseID3(FILE *pM4AFile, S_ID3_INFO *pID3Info) {
 							memcpy(pID3Info->album, pData, Min(dataLen, ID3_ITEM_LEN));
 							result = true;
 							break;
-						case M4ATAGATOM_ARTIST: // 艺术家
 							memcpy(pID3Info->artist, pData, Min(dataLen, ID3_ITEM_LEN));
+						case M4ATAGATOM_ARTIST: // 艺术家
 							result = true;
 							break;
 						case M4ATAGATOM_TITLE: 	// 标题

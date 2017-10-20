@@ -89,7 +89,7 @@ bool CMP3ID3Parser::IsID3V1(const BYTE *pFlagHeader) const {
 	return (strncmp((const char *)pFlagHeader, "TAG", 3) == 0);
 }
 
-bool CMP3ID3Parser::ParseID3V2_3(const BYTE *pID3Data, UINT dataLen, 
+bool CMP3ID3Parser::ParseID3V2_3(const BYTE *pID3Data, int dataLen,
 		S_ID3_INFO *pID3Info, S_PIC_INFO *pPicInfo) {
 	LOGICTRL(UART_DEBUG, "CMP3ID3Parser::ParseID3V2_3++++++++++");
 
@@ -148,7 +148,7 @@ bool CMP3ID3Parser::ParseID3V1(const BYTE *pID3Data, S_ID3_INFO *pID3Info) {
 	return true;
 }
 
-bool CMP3ID3Parser::ParseAPICData(const BYTE *pAPICFrameData, UINT apicFrameLen, S_PIC_INFO *pPicInfo) {
+bool CMP3ID3Parser::ParseAPICData(const BYTE *pAPICFrameData, int apicFrameLen, S_PIC_INFO *pPicInfo) {
 	LOGICTRL(UART_DEBUG, "CMP3ID3Parser::ParseAPICData++++++++++");
 
 	BYTE encoding = *pAPICFrameData;	// 编码格式

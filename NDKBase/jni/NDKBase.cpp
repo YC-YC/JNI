@@ -9,8 +9,16 @@
 static CID3* pID3 =NULL;
 static CID3 ID3;
 
+__attribute__((section("special"))) int global_special = 33;
+static const char* tmp = {"Hello"};
+
 int main(int argc, char* argv[]){
-	LOGI("main");
+	if (argv != NULL){
+		LOGI("main argc = %d, argv = %s", argc, argv[0]);
+	}
+	else{
+		LOGI("main argc = %d", argc);
+	}
 
 }
 

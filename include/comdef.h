@@ -13,9 +13,9 @@
 #include <unistd.h>
 #include <sys/times.h>
 #include <pthread.h>
-#include "debug.h"
+#include "Log.h"
 
-using namespace std;
+//using namespace std;
 
 
 typedef unsigned short int 		 WORD;
@@ -92,6 +92,6 @@ inline DWORD GetTickCount()
 #define BIT14	((WORD)(1<<14))
 #define BIT15	((WORD)(1<<15))
 
-const char* CJavaForString(int cmd, const char*val);
+#define getSize(x)	(sizeof(x)/x##[0])
 
 #endif /* COMDEF_H_ */
