@@ -6,9 +6,24 @@
  */
 #include "SendCanCmdManager.h"
 
-const static SendModule gSendModules[] = {SendModule(0x2F8),SendModule(0x513),
-				SendModule(0x527),SendModule(0x601)
-};
+const static SendModule gSendModules[] = {
+		SendModule(0x296),
+		SendModule(0x2F8),
+		SendModule(0x2F9),
+		SendModule(0x2FA),
+		SendModule(0x500),
+		SendModule(0x501),
+		SendModule(0x513),
+		SendModule(0x514),
+		SendModule(0x515),
+		SendModule(0x51A),
+		SendModule(0x527),
+		SendModule(0x555),
+		SendModule(0x580),
+		SendModule(0x600),
+		SendModule(0x601),
+		SendModule(0x340),
+		SendModule(0x580)};
 
 SendCanCmdManager::SendCanCmdManager(){
 	pthread_mutex_init(&m_Mutex, NULL);
@@ -25,6 +40,23 @@ SendCanCmdManager::~SendCanCmdManager(){
 //	pthread_mutex_unlock(&m_sendMutex);
 //}
 
+int SendCanCmdManager::defaultCanData(int moduleId, unsigned char* buffer, int length){
+	int result = 0;
+	pthread_mutex_lock(&m_Mutex);
+	for (int i = 0; i < sizeof(gSendModules)/sizeof(gSendModules[0]); i++){
+		SendModule* pSendModule = (SendModule*)(gSendModules+i);
+//		LOGI("moduleId = %d", sendModule.getModuleId());
+		if (moduleId == pSendModule->getModuleId()){
+//			LOGI("same moduleId, index = %d, length = %d", index, length);
+			pSendModule->setDefaultCanData(buffer, length);
+			result = true;
+			break;
+		}
+	}
+	pthread_mutex_unlock(&m_Mutex);
+	return result;
+}
+
 void SendCanCmdManager::sendCanData(int moduleId, int index, int length, int what){
 	pthread_mutex_lock(&m_Mutex);
 	for (int i = 0; i < sizeof(gSendModules)/sizeof(gSendModules[0]); i++){
@@ -39,17 +71,34 @@ void SendCanCmdManager::sendCanData(int moduleId, int index, int length, int wha
 	}
 	pthread_mutex_unlock(&m_Mutex);
 }
-void SendCanCmdManager::setCanData(int moduleId, int index, int length, int what){
+int SendCanCmdManager::setCanData(int moduleId, int index, int length, int what){
+	int result = 0;
 	pthread_mutex_lock(&m_Mutex);
 	for (int i = 0; i < sizeof(gSendModules)/sizeof(gSendModules[0]); i++){
 		SendModule* pSendModule = (SendModule*)(gSendModules+i);
 		if (moduleId == pSendModule->getModuleId()){
 			CanByteHelper* pCanByteHelpers = formatCanData(index, length, what);
 			pSendModule->setCanData(pCanByteHelpers);
+			result = 1;
 			break;
 		}
 	}
 	pthread_mutex_unlock(&m_Mutex);
+	return result;
+}
+
+int SendCanCmdManager::getCanData(int moduleId, unsigned char* buffer, int length){
+	int result = 0;
+	pthread_mutex_lock(&m_Mutex);
+	for (int i = 0; i < sizeof(gSendModules)/sizeof(gSendModules[0]); i++){
+		SendModule* pSendModule = (SendModule*)(gSendModules+i);
+		if (moduleId == pSendModule->getModuleId()){
+			result = pSendModule->getCanData(buffer, length);
+			break;
+		}
+	}
+	pthread_mutex_unlock(&m_Mutex);
+	return result;
 }
 
 CanByteHelper* SendCanCmdManager::formatCanData(int index, int length, int what){

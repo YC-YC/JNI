@@ -6,6 +6,7 @@
  */
 #include <math.h>
 #define LOG_TAG "TestCan"
+#define TEST_LOG 0
 
 #include <comdef.h>
 
@@ -81,15 +82,27 @@ public:
 //		}
 	}
 
+	void setDefaultCanData(BYTE* buffer, int length){
+		pthread_mutex_lock(&m_sendMutex);
+		if (length > (CAN_DATA_LENGTH-CAN_DATA_START_OFFSET)){
+			length = (CAN_DATA_LENGTH-CAN_DATA_START_OFFSET);
+		}
+		if (length > 0 && length <= (CAN_DATA_LENGTH-CAN_DATA_START_OFFSET)){
+			memcpy(mBuffer+CAN_DATA_START_OFFSET, buffer, sizeof(BYTE)*length);
+		}
+		printBuffer();
+		pthread_mutex_unlock(&m_sendMutex);
+	}
+
 	void setCanData(CanByteHelper* canByteHelpers){
-		LOGI("setCanData");
+		TestLog("setCanData");
 		pthread_mutex_lock(&m_sendMutex);
 		if (canByteHelpers != NULL){
 			for (int i = 0; i < CANBYTEHELPERS_LEN; i++){
 				CanByteHelper canByteHelper = canByteHelpers[i];
 				if (canByteHelper.isDataValid()){
 					int byteIndex = canByteHelper.getDataIndex() + CAN_DATA_START_OFFSET;
-					LOGI("setData byteIndex = %d", byteIndex);
+//					LOGI("setData byteIndex = %d", byteIndex);
 					mBuffer[byteIndex] = canByteHelper.setByte(mBuffer[byteIndex]);
 				}
 				else{
@@ -102,6 +115,17 @@ public:
 		pthread_mutex_unlock(&m_sendMutex);
 	}
 
+	int getCanData(unsigned char* buffer, int length){
+		TestLog("setCanData");
+		pthread_mutex_lock(&m_sendMutex);
+		if (buffer != NULL){
+			memcpy(buffer, mBuffer, sizeof(BYTE)*CAN_DATA_LENGTH);
+		}
+		printBuffer();
+		pthread_mutex_unlock(&m_sendMutex);
+		return CAN_DATA_LENGTH;
+	}
+
 private:
 	void printBuffer(){
 		char ch[256] = {0};
@@ -109,7 +133,7 @@ private:
 				mBuffer[0], mBuffer[1],mBuffer[2],mBuffer[3],mBuffer[4],
 				mBuffer[5],mBuffer[6],mBuffer[7],mBuffer[8],mBuffer[9],
 				mBuffer[10]);
-		LOGI("buffer is:%s", ch);
+		TestLog("buffer is:%s", ch);
 	}
 
 
@@ -125,8 +149,10 @@ public:
 	SendCanCmdManager();
 	~SendCanCmdManager();
 //	void setCanProxy(CanProxy* pCanProxy);
+	int defaultCanData(int moduleId, unsigned char* buffer, int length);
 	void sendCanData(int moduleId, int index, int length, int what);
-	void setCanData(int moduleId, int index, int length, int what);
+	int setCanData(int moduleId, int index, int length, int what);
+	int getCanData(int moduleId, unsigned char* buffer, int length);
 
 private:
 	

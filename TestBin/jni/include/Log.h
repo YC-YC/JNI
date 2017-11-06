@@ -11,11 +11,14 @@
 #define LOG_TAG "TestJni"
 #endif
 
+#ifndef TEST_LOG
+#define TEST_LOG 1
+#endif
+
 #define LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 #define LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
 #define DebugLog(flag, msg...)  ((flag)?LOGI(msg):flag)
 
-#define TEST_LOG 1
 #define TestLog(msg...) DebugLog(TEST_LOG, msg)
