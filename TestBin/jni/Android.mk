@@ -14,7 +14,7 @@ LOCAL_MODULE    := SendCanBin
 
 APP_SRCS :=  mySrc/*.cpp \
 			CS75SendHelper.cpp\
-			TestBin.cpp 
+			TestMain.cpp 
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 
@@ -34,7 +34,7 @@ LOCAL_MODULE    := SendCan
 
 APP_SRCS :=  mySrc/*.cpp \
 			CS75SendHelper.cpp\
-			TestBin.cpp 
+			TestMain.cpp 
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 

@@ -6,7 +6,7 @@
  */
 #include <math.h>
 #define LOG_TAG "TestCan"
-#define TEST_LOG 0
+#define TEST_LOG 1
 
 #include <comdef.h>
 
