@@ -16,11 +16,13 @@ extern "C"
 
 extern int testSendCan();
 extern int testJson();
+extern int testPollFile();
 
 int main(int argc, char* argv[]){
 
-	testSendCan();
-	testJson();
+//	testSendCan();
+//	testJson();
+	testPollFile();
 }
 
 #ifdef __cplusplus

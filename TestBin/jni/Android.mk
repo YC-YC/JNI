@@ -16,7 +16,7 @@ LOCAL_MODULE    := TestBin
 APP_SRCS :=  cjson/*.c \
 			mySrc/*.cpp \
 			CS75SendHelper.cpp\
-			Test.cpp TestMain.cpp 
+			Test.cpp TestMain.cpp TestSpyFile.cpp
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 
