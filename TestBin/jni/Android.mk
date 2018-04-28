@@ -5,18 +5,23 @@ include $(CLEAR_VARS)
 #链接日志模块
 LOCAL_LDLIBS    := -lm -llog -landroid
 
+
 LOCAL_CFLASG += -pie -fPIE
 LOCAL_LDFLAGS += -pie -fPIE
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/cjson \
-					$(LOCAL_PATH)/mySrc	
+					$(LOCAL_PATH)/mySrc	\
+					$(LOCAL_PATH)/pattern/singleton \
+					$(LOCAL_PATH)/pattern/observer
 
 LOCAL_MODULE    := TestBin
 
 APP_SRCS :=  cjson/*.c \
 			mySrc/*.cpp \
+			pattern/singleton/*.cpp \
+			pattern/observer/*.cpp \
 			CS75SendHelper.cpp\
-			Test.cpp TestMain.cpp TestSpyFile.cpp
+			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp TestPattern.cpp
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 

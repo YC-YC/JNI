@@ -9,6 +9,7 @@
  */
 
 #include <strings.h>
+#include <stdio.h>
 #ifdef __cplusplus
 extern "C"
 {
@@ -17,12 +18,15 @@ extern "C"
 extern int testSendCan();
 extern int testJson();
 extern int testPollFile();
+extern int testScreencap();
+extern void testPattern();
 
 int main(int argc, char* argv[]){
-
 //	testSendCan();
 //	testJson();
-	testPollFile();
+//	testPollFile();
+//	testScreencap();
+	testPattern();
 }
 
 #ifdef __cplusplus
