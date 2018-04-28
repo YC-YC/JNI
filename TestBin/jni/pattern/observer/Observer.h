@@ -23,7 +23,8 @@ public:
 protected:
 	VirSubject();
 private:
-	std::list<VirObserver*> m_observerList;
+	typedef std::list<VirObserver *> OBSERVERLIST;
+	OBSERVERLIST m_observerList;
 };
 
 class VirObserver{
