@@ -10,6 +10,7 @@
 #include "Observer.h"
 #include "ConcreteObserver.h"
 #include "ConcreteSubject.h"
+#include "ICommand.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -43,6 +44,32 @@ void testPattern(){
 	p2 = NULL;
 	delete p1;
 	p1 = NULL;
+
+	//命令模式
+	Receiver* pRece = new Receiver();
+	Command* pCmdRice = new ConcreteCommandA(pRece);
+	Command* pCmdNoodle = new ConcreteCommandB(pRece);
+	Command* pCmdRice2 = new ConcreteCommandA(pRece);
+	Command* pCmdNoodle2 = new ConcreteCommandB(pRece);
+	Invoke* pInv = new Invoke();
+	LOGI("Addcommand");
+	pInv->addCommand(pCmdRice);
+	pInv->addCommand(pCmdNoodle);
+	pInv->addCommand(pCmdRice2);
+	pInv->addCommand(pCmdNoodle2);
+	pInv->sendCommand();
+
+	LOGI("delete command");
+	pInv->delCommand(pCmdNoodle);
+	pInv->delCommand(pCmdRice2);
+	pInv->sendCommand();
+
+	LOGI("delete command");
+	pInv->delCommand(pCmdNoodle2);
+	pInv->delCommand(pCmdRice);
+	pInv->sendCommand();
+
+
 }
 
 #ifdef __cplusplus
