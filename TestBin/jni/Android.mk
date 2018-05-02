@@ -12,6 +12,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/cjson \
 					$(LOCAL_PATH)/mySrc	\
 					$(LOCAL_PATH)/pattern/command \
+					$(LOCAL_PATH)/pattern/strategy \
+					$(LOCAL_PATH)/pattern/decorator \
 					$(LOCAL_PATH)/pattern/singleton \
 					$(LOCAL_PATH)/pattern/observer
 

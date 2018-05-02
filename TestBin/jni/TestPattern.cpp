@@ -11,6 +11,8 @@
 #include "ConcreteObserver.h"
 #include "ConcreteSubject.h"
 #include "ICommand.h"
+#include "Strategy.h"
+#include "Decorator.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -69,7 +71,32 @@ void testPattern(){
 	pInv->delCommand(pCmdRice);
 	pInv->sendCommand();
 
+	//策略模式
+	Character* pChar = new King();
+	Weapon* pAK47 = new AK47();
+	Weapon* pKnife = new Knife();
 
+	pChar->fight();
+	pChar->setWeapon(pAK47);
+	pChar->fight();
+	pChar->setWeapon(pKnife);
+	pChar->fight();
+
+	delete pAK47;
+	pAK47 = NULL;
+	delete pKnife;
+	pKnife = NULL;
+
+	//装饰者模式
+	Phone* pPhone = new IPhone();
+	pPhone->showPhone();
+	DecoratorPhone* decorator = new DecoratorPhoneA(pPhone);
+	decorator->showPhone();
+
+	delete decorator;
+	decorator = NULL;
+	delete pPhone;
+	pPhone = NULL;
 }
 
 #ifdef __cplusplus
