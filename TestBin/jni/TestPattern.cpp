@@ -13,6 +13,9 @@
 #include "ICommand.h"
 #include "Strategy.h"
 #include "Decorator.h"
+#include "Mediator.h"
+#include "Mememto.h"
+#include "Flyweight.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -97,6 +100,46 @@ void testPattern(){
 	decorator = NULL;
 	delete pPhone;
 	pPhone = NULL;
+
+	ConcreteMediator* pMediator = new ConcreteMediator();
+
+	Colleage* pColleageA = new ConcreteColleageA(pMediator);
+	Colleage* pColleageB = new ConcreteColleageB(pMediator);
+
+	pMediator->setColleageA(pColleageA);
+	pMediator->setColleageB(pColleageB);
+
+	pMediator->sendMsg(1, pColleageA);
+	pMediator->sendMsg(2, pColleageB);
+
+	Originator* pOriginator = new Originator(5);
+	int state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	Taker* pTaker = new Taker();
+	pTaker->setMememto(pOriginator->createMememto());
+
+	pOriginator->setState(10);
+	state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	pOriginator->restoreToMememto(pTaker->getMememto());
+
+	state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	FlyweightFactory* pFactor = new FlyweightFactory();
+
+	Flyweight* flyweight = pFactor->getFlyWeight(5);
+	int key = flyweight->getKey();
+	LOGI("Flyweight getKey = %d", key);
+
+	flyweight = pFactor->getFlyWeight(10);
+	key = flyweight->getKey();
+	LOGI("Flyweight getKey = %d", key);
+
+	LOGI("FlyweightFactory getFlyweightCount = %d", pFactor->getFlyweightCount());
+
 }
 
 #ifdef __cplusplus

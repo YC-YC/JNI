@@ -11,6 +11,9 @@ LOCAL_LDFLAGS += -pie -fPIE
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/cjson \
 					$(LOCAL_PATH)/mySrc	\
+					$(LOCAL_PATH)/pattern/mediator \
+					$(LOCAL_PATH)/pattern/mememto \
+					$(LOCAL_PATH)/pattern/flyweight \
 					$(LOCAL_PATH)/pattern/command \
 					$(LOCAL_PATH)/pattern/strategy \
 					$(LOCAL_PATH)/pattern/decorator \
