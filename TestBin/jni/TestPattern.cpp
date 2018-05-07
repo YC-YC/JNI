@@ -20,6 +20,9 @@
 #include "Mediator.h"
 #include "Mememto.h"
 #include "Flyweight.h"
+#include "Component.h"
+#include "Bridge.h"
+#include "Prototype.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -181,6 +184,43 @@ void testPattern(){
 	LOGI("Flyweight getKey = %d", key);
 
 	LOGI("FlyweightFactory getFlyweightCount = %d", pFactor->getFlyweightCount());
+
+	LOGI("\n---------组件模式-----------\n");
+	Tree* pTree = new Tree();
+	pTree->add(new Leaf());
+	pTree->action();
+
+	Component* leaf1 = new Leaf();
+	Component* leaf2 = new Leaf();
+	Tree* pTree2 = new Tree();
+	pTree2->add(leaf1);
+	pTree2->add(leaf2);
+	pTree2->action();
+
+	pTree->add(pTree2);
+	pTree2->action();
+
+	LOGI("\n---------桥接模式-----------\n");
+	Implement* pImpl1 = new ConcreteImplememtA();
+	Implement* pImpl2 = new ConcreteImplememtB();
+
+	Abstraction* pAbst = new ConcreteAbstractionA(pImpl1);
+	pAbst->action();
+	pAbst = new ConcreteAbstractionA(pImpl2);
+	pAbst->action();
+
+	pAbst = new ConcreteAbstractionB(pImpl1);
+	pAbst->action();
+	pAbst = new ConcreteAbstractionB(pImpl2);
+	pAbst->action();
+
+	LOGI("\n---------桥接模式-----------\n");
+	Prototype* pPrototype1 = new ConcretePrototypeA();
+	Prototype* pPrototype2 = pPrototype1->Clone();
+
+	Prototype* pPrototype3 = new ConcretePrototypeB();
+	Prototype* pPrototype4 = pPrototype3->Clone();
+
 
 }
 
