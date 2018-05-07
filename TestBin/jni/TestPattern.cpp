@@ -17,6 +17,9 @@
 #include "Facade.h"
 #include "Template.h"
 #include "Adapter.h"
+#include "Mediator.h"
+#include "Mememto.h"
+#include "Flyweight.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -136,6 +139,48 @@ void testPattern(){
 	target->Request();
 	target = new Adapter1();
 	target->Request();
+
+	LOGI("\n---------中介模式-----------\n");
+	ConcreteMediator* pMediator = new ConcreteMediator();
+
+	Colleage* pColleageA = new ConcreteColleageA(pMediator);
+	Colleage* pColleageB = new ConcreteColleageB(pMediator);
+
+	pMediator->setColleageA(pColleageA);
+	pMediator->setColleageB(pColleageB);
+
+	pMediator->sendMsg(1, pColleageA);
+	pMediator->sendMsg(2, pColleageB);
+
+	LOGI("\n---------备忘录模式-----------\n");
+	Originator* pOriginator = new Originator(5);
+	int state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	Taker* pTaker = new Taker();
+	pTaker->setMememto(pOriginator->createMememto());
+
+	pOriginator->setState(10);
+	state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	pOriginator->restoreToMememto(pTaker->getMememto());
+
+	state = pOriginator->getState();
+	LOGI("original current state = %d", state);
+
+	LOGI("\n---------享元模式-----------\n");
+	FlyweightFactory* pFactor = new FlyweightFactory();
+
+	Flyweight* flyweight = pFactor->getFlyWeight(5);
+	int key = flyweight->getKey();
+	LOGI("Flyweight getKey = %d", key);
+
+	flyweight = pFactor->getFlyWeight(10);
+	key = flyweight->getKey();
+	LOGI("Flyweight getKey = %d", key);
+
+	LOGI("FlyweightFactory getFlyweightCount = %d", pFactor->getFlyweightCount());
 
 }
 
