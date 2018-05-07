@@ -13,6 +13,10 @@
 #include "ICommand.h"
 #include "Strategy.h"
 #include "Decorator.h"
+#include "Proxy.h"
+#include "Facade.h"
+#include "Template.h"
+#include "Adapter.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -24,10 +28,11 @@ extern "C"
  */
 void testPattern(){
 	LOGI("testPattern");
-	//单例测试
+	LOGI("\n---------单例模式-----------\n");
 	int val = Csingleton::getInstances()->add(2, 3);
 	LOGI("singleton add = %d", val);
-	//观察者测试
+
+	LOGI("\n---------观察者模式-----------\n");
 	VirObserver* p1 = new ConcreteObserverA();
 	VirObserver* p2 = new ConcreteObserverB();
 	VirSubject* subject = new ConcreteSubjectA();
@@ -47,7 +52,7 @@ void testPattern(){
 	delete p1;
 	p1 = NULL;
 
-	//命令模式
+	LOGI("\n---------命令模式-----------\n");
 	Receiver* pRece = new Receiver();
 	Command* pCmdRice = new ConcreteCommandA(pRece);
 	Command* pCmdNoodle = new ConcreteCommandB(pRece);
@@ -71,7 +76,7 @@ void testPattern(){
 	pInv->delCommand(pCmdRice);
 	pInv->sendCommand();
 
-	//策略模式
+	LOGI("\n---------策略模式-----------\n");
 	Character* pChar = new King();
 	Weapon* pAK47 = new AK47();
 	Weapon* pKnife = new Knife();
@@ -87,7 +92,7 @@ void testPattern(){
 	delete pKnife;
 	pKnife = NULL;
 
-	//装饰者模式
+	LOGI("\n---------装饰者模式-----------\n");
 	Phone* pPhone = new IPhone();
 	pPhone->showPhone();
 	DecoratorPhone* decorator = new DecoratorPhoneA(pPhone);
@@ -97,6 +102,41 @@ void testPattern(){
 	decorator = NULL;
 	delete pPhone;
 	pPhone = NULL;
+
+	LOGI("\n---------代理模式-----------\n");
+	Proxy* pProxy = new Proxy();
+	pProxy->request();
+	delete pProxy;
+	pProxy = NULL;
+
+	LOGI("\n---------外观模式-----------\n");
+	Facade* pFacade = new Facade();
+	pFacade->methodA();
+	pFacade->methodB();
+	delete pFacade;
+	pFacade = NULL;
+
+	LOGI("\n---------模块模式-----------\n");
+	AbstractTemplate* pTemplate = new ConcreteTemplateA();
+	pTemplate->templateMethod();
+	delete pTemplate;
+	pTemplate = new ConcreteTemplateB();
+	pTemplate->templateMethod();
+	delete pTemplate;
+
+	LOGI("\n---------适配模式-----------\n");
+
+	LOGI("\n---------类适配模式-----------\n");
+	Target* target = new Adapter();
+	target->Request();
+
+	LOGI("\n---------对象适配模式-----------\n");
+	Adaptee* adaptee = new Adaptee();
+	target = new Adapter1(adaptee);
+	target->Request();
+	target = new Adapter1();
+	target->Request();
+
 }
 
 #ifdef __cplusplus

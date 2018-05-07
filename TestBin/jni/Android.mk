@@ -10,10 +10,16 @@ LOCAL_CFLASG += -pie -fPIE
 LOCAL_LDFLAGS += -pie -fPIE
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/cjson \
+					$(LOCAL_PATH)/uart	\
 					$(LOCAL_PATH)/mySrc	\
 					$(LOCAL_PATH)/pattern/command \
 					$(LOCAL_PATH)/pattern/strategy \
 					$(LOCAL_PATH)/pattern/decorator \
+					$(LOCAL_PATH)/pattern/proxy \
+					$(LOCAL_PATH)/pattern/facade \
+					$(LOCAL_PATH)/pattern/builder \
+					$(LOCAL_PATH)/pattern/template \
+					$(LOCAL_PATH)/pattern/adapter \
 					$(LOCAL_PATH)/pattern/singleton \
 					$(LOCAL_PATH)/pattern/observer
 
@@ -23,6 +29,7 @@ APP_SRCS :=  cjson/*.c \
 			mySrc/*.cpp \
 			pattern/singleton/*.cpp \
 			pattern/observer/*.cpp \
+			uart/*.cpp \
 			CS75SendHelper.cpp\
 			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp TestPattern.cpp
 			

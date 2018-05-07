@@ -10,6 +10,7 @@
 
 #include <strings.h>
 #include <stdio.h>
+#include "UartHelper.h"
 #ifdef __cplusplus
 extern "C"
 {
@@ -27,6 +28,13 @@ int main(int argc, char* argv[]){
 //	testPollFile();
 //	testScreencap();
 	testPattern();
+
+	UartHelper* pUartHelper = new UartHelper();
+	pUartHelper->openUart();
+	while(1){
+		usleep(100000);
+	}
+
 }
 
 #ifdef __cplusplus
