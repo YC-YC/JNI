@@ -37,7 +37,7 @@ APP_SRCS :=  cjson/*.c \
 			pattern/observer/*.cpp \
 			uart/*.cpp \
 			CS75SendHelper.cpp\
-			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp TestPattern.cpp
+			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp TestPattern.cpp TestStd.cpp
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 

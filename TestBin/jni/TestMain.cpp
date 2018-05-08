@@ -21,6 +21,7 @@ extern int testJson();
 extern int testPollFile();
 extern int testScreencap();
 extern void testPattern();
+extern void testStd();
 
 int main(int argc, char* argv[]){
 //	testSendCan();
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]){
 //	testPollFile();
 //	testScreencap();
 	testPattern();
-
+	testStd();
 	UartHelper* pUartHelper = new UartHelper();
 	pUartHelper->openUart();
 	while(1){
