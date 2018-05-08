@@ -37,7 +37,7 @@ public:
 	~ConcreteColleageA(){}
 	void sendMsg(int msg){
 		LOGI("ConcreteColleageA sendMsg = %d", msg);
-		this->m_pMediator->sendMsg(msg,this);
+		//this->m_pMediator->sendMsg(msg,this);
 	}
 };
 
@@ -47,7 +47,7 @@ public:
 	~ConcreteColleageB(){}
 	void sendMsg(int msg){
 		LOGI("ConcreteColleageB sendMsg = %d", msg);
-		this->m_pMediator->sendMsg(msg,this);
+		//this->m_pMediator->sendMsg(msg,this);
 	}
 };
 
