@@ -23,6 +23,7 @@ extern int testScreencap();
 extern void testPattern();
 extern void testStd();
 extern void testInterface();
+extern void testFile();
 
 int main(int argc, char* argv[]){
 //	testSendCan();
@@ -32,6 +33,7 @@ int main(int argc, char* argv[]){
 	testPattern();
 	testStd();
 	testInterface();
+	testFile();
 	/*UartHelper* pUartHelper = new UartHelper();
 	pUartHelper->openUart();
 	while(1){
