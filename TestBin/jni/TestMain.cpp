@@ -22,6 +22,7 @@ extern int testPollFile();
 extern int testScreencap();
 extern void testPattern();
 extern void testStd();
+extern void testInterface();
 
 int main(int argc, char* argv[]){
 //	testSendCan();
@@ -30,11 +31,12 @@ int main(int argc, char* argv[]){
 //	testScreencap();
 	testPattern();
 	testStd();
-	UartHelper* pUartHelper = new UartHelper();
+	testInterface();
+	/*UartHelper* pUartHelper = new UartHelper();
 	pUartHelper->openUart();
 	while(1){
 		usleep(100000);
-	}
+	}*/
 
 }
 
