@@ -28,7 +28,9 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/pattern/adapter \
 					$(LOCAL_PATH)/pattern/singleton \
 					$(LOCAL_PATH)/pattern/observer	\
-					$(LOCAL_PATH)/interface
+					$(LOCAL_PATH)/interface	\
+					$(LOCAL_PATH)/ipc
+					
 
 LOCAL_MODULE    := TestBin
 
@@ -37,9 +39,32 @@ APP_SRCS :=  cjson/*.c \
 			pattern/singleton/*.cpp \
 			pattern/observer/*.cpp \
 			uart/*.cpp \
+			ipc/*.cpp \
 			CS75SendHelper.cpp\
 			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp \
 			TestPattern.cpp TestStd.cpp TestInterface.cpp TestFile.cpp
+			
+LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
+
+include $(BUILD_EXECUTABLE)
+
+
+include $(CLEAR_VARS)
+
+#链接日志模块
+LOCAL_LDLIBS    := -lm -llog -landroid
+
+
+LOCAL_CFLASG += -pie -fPIE
+LOCAL_LDFLAGS += -pie -fPIE
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
+					$(LOCAL_PATH)/ipc
+					
+
+LOCAL_MODULE    := TestBin2
+
+APP_SRCS :=  ipc/*.cpp \
+			TestMain2.cpp
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 

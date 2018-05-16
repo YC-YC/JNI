@@ -11,6 +11,9 @@
 #include <strings.h>
 #include <stdio.h>
 #include "UartHelper.h"
+#include "IPC.h"
+
+//#include "IPC_Message.h"
 #ifdef __cplusplus
 extern "C"
 {
@@ -39,6 +42,16 @@ int main(int argc, char* argv[]){
 	while(1){
 		usleep(100000);
 	}*/
+
+	IPC* pIpc = new IPC();
+	pIpc->setIPCModle(new IPCPipe("/cache/myfifo_write", /*NULL*/"/cache/myfifo_read"));
+	pIpc->startIPC();
+	for(int i = 0; i < 1000; i++){
+		usleep(1*1000*1000);
+		MESSAGE msg = {i, "Service test"};
+		pIpc->sendMessage(msg);
+	}
+	pIpc->stopIPC();
 
 }
 
