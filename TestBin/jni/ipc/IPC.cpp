@@ -9,6 +9,7 @@
 
 #include "comdef.h"
 #include <string.h>
+#include <errno.h>
 //#include "Log.h"
 //using namespace std;
 void* threadHandler(void* param){
