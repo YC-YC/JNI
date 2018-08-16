@@ -6,6 +6,6 @@ include $(CLEAR_VARS)
 LOCAL_LDLIBS    := -lm -llog -landroid
 
 LOCAL_MODULE    := ScanFile
-LOCAL_SRC_FILES := ScanFile.cpp
+LOCAL_SRC_FILES := ScanFile.cpp toStringArray.cpp JniConstants.cpp
 
 include $(BUILD_SHARED_LIBRARY)

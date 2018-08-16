@@ -29,7 +29,8 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/include \
 					$(LOCAL_PATH)/pattern/singleton \
 					$(LOCAL_PATH)/pattern/observer	\
 					$(LOCAL_PATH)/interface	\
-					$(LOCAL_PATH)/ipc
+					$(LOCAL_PATH)/ipc \
+					$(LOCAL_PATH)/md5
 					
 
 LOCAL_MODULE    := TestBin
@@ -40,9 +41,11 @@ APP_SRCS :=  cjson/*.c \
 			pattern/observer/*.cpp \
 			uart/*.cpp \
 			ipc/*.cpp \
+			md5/*.cpp \
 			CS75SendHelper.cpp\
 			Test.cpp TestMain.cpp TestSpyFile.cpp Screencap.cpp \
-			TestPattern.cpp TestStd.cpp TestInterface.cpp TestFile.cpp
+			TestPattern.cpp TestStd.cpp TestInterface.cpp TestFile.cpp \
+			TestMD5.cpp
 			
 LOCAL_SRC_FILES := $(foreach F, $(APP_SRCS), $(addprefix $(dir $(F)),$(notdir $(wildcard $(LOCAL_PATH)/$(F)))))
 

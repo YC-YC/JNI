@@ -16,6 +16,9 @@ public class FileJni {
 
 	 public static native void listImpl(String path);
 	 
+	 public static native String[] listDirImpl(String path);
+	 
+	 
 	 public static native void set(String source, String song, String artist, String album,
  			String albumArt, long duration, long playlistNum, String songId,
  			long mode);

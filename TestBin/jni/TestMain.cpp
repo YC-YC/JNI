@@ -27,6 +27,7 @@ extern void testPattern();
 extern void testStd();
 extern void testInterface();
 extern void testFile();
+extern void testMD5();
 
 int main(int argc, char* argv[]){
 //	testSendCan();
@@ -37,21 +38,24 @@ int main(int argc, char* argv[]){
 	testStd();
 	testInterface();
 	testFile();
+
+	testMD5();
+
 	/*UartHelper* pUartHelper = new UartHelper();
 	pUartHelper->openUart();
 	while(1){
 		usleep(100000);
 	}*/
 
-	IPC* pIpc = new IPC();
-	pIpc->setIPCModle(new IPCPipe("/cache/myfifo_write", /*NULL*/"/cache/myfifo_read"));
+	/*IPC* pIpc = new IPC();
+	pIpc->setIPCModle(new IPCPipe("/cache/myfifo_write", NULL"/cache/myfifo_read"));
 	pIpc->startIPC();
 	for(int i = 0; i < 1000; i++){
 		usleep(1*1000*1000);
 		MESSAGE msg = {i, "Service test"};
 		pIpc->sendMessage(msg);
 	}
-	pIpc->stopIPC();
+	pIpc->stopIPC();*/
 
 }
 

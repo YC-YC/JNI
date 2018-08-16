@@ -17,6 +17,14 @@ JNIEXPORT void JNICALL Java_com_example_scanfile_FileJni_listImpl
 
 /*
  * Class:     com_example_scanfile_FileJni
+ * Method:    listDirImpl
+ * Signature: (Ljava/lang/String;)[Ljava/lang/String;
+ */
+JNIEXPORT jobjectArray JNICALL Java_com_example_scanfile_FileJni_listDirImpl
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     com_example_scanfile_FileJni
  * Method:    set
  * Signature: (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;JJLjava/lang/String;J)V
  */
