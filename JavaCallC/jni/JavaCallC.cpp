@@ -187,18 +187,19 @@ JNIEXPORT jint JNICALL IOCtl
 	int fd = 0;
 	if ((fd = open(path_utf, O_RDWR))){
 		if (ioctl(fd, type, &val) == RESULT_SUCCESS){
-			LOGD("successfully");
+			LOGD("successfully val = %d", val);
 		}
 		else{
 			LOGD("unsuccessfully");
 		}
 		close(fd);
 	}else{
+		val = -1;
 		LOGD("can't open %s", path_utf);
 	}
 
 	env->ReleaseStringUTFChars(path, path_utf);
-	return 0;
+	return val;
 }
 
 /*
